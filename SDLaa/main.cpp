@@ -1,7 +1,7 @@
 /**
-* Author: Dani KIm
-* Assignment: Rise of the AI
-* Date due: 2024-07-27, 11:59pm (submitted 2024-07-31 ]w/ extension)
+* Author: Dani Kim
+* Assignment: AAAAAA (Gravity Platformer)
+* Date due: 2024-08-15, 1:00pm
 * I pledge that I have completed this assignment without
 * collaborating with anyone else, in conformance with the
 * NYU School of Engineering Policies and Procedures on
@@ -73,13 +73,13 @@ constexpr char V_SHADER_PATH[] = "shaders/vertex_textured.glsl",
 constexpr float MILLISECONDS_IN_SECOND = 1000.0;
 
 constexpr char SPRITESHEET_FILEPATH[] = "assets/fella.png",
-           MAP_TILESET_FILEPATH[] = "assets/marble.png",
+           MAP_TILESET_FILEPATH[] = "assets/tile188.png",
            ENEMY_FILEPATH[]       = "assets/roomba.png",
            BULLET_FILEPATH[]      = "assets/hadoblast.png",
            ENEMYBULLET_FILEPATH[] = "assets/darkhado.png",
-           BGM_FILEPATH[]         = "assets/ska.mp3",
+           BGM_FILEPATH[]         = "assets/tutorial.mp3",
            JUMP_SFX_FILEPATH[]    = "assets/horridjump.mp3",
-           DEATH_SFX_FILEPATH[]   = "assets/thwack.mp3",
+           DEATH_SFX_FILEPATH[]   = "assets/augh.mp3",
            SHOOT_SFX_FILEPATH[]   = "assets/quack.mp3",
            FONT_FILEPATH[]        = "assets/font1.png";
 
@@ -99,10 +99,10 @@ constexpr int PLAY_ONCE   =  0,
 
 unsigned int LEVEL_1_DATA[] =
 {
-    0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+    1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-    1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
-    2, 2, 1, 0, 0, 0, 1, 1, 1, 0, 0, 2, 2, 2,
+    0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
+    1, 2, 1, 0, 0, 0, 1, 1, 1, 0, 0, 2, 2, 2,
     2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2
 };
 
@@ -124,6 +124,7 @@ float g_previous_ticks = 0.0f,
 GLuint g_font_texture_id;
 int g_enemies_left = ENEMY_COUNT;
 bool g_coward_fell = false;
+bool g_grav_normal = true;
 
 void initialise();
 void process_input();
@@ -171,7 +172,7 @@ void initialise()
     
     // ————— MAP SET-UP ————— //
     GLuint map_texture_id = Utility::load_texture(MAP_TILESET_FILEPATH);
-    g_game_state.map = new Map(LEVEL1_WIDTH, LEVEL1_HEIGHT, LEVEL_1_DATA, map_texture_id, 1.0f, 9, 9);
+    g_game_state.map = new Map(LEVEL1_WIDTH, LEVEL1_HEIGHT, LEVEL_1_DATA, map_texture_id, 1.0f, 1, 1);
     
     // ————— GEORGE SET-UP ————— //
 
@@ -291,7 +292,9 @@ void process_input()
                         // Jump
                         if (g_game_state.player->get_map_collided_bottom() || g_game_state.player->get_collided_bottom() )
                         {
-                            g_game_state.player->jump();
+                            //g_game_state.player->set_acceleration(glm::vec3(0.0f, 4.905f, 0.0f));            //break;
+                            // g_game_state.player->jump();
+                            
                             Mix_PlayChannel(-1, g_game_state.jump_sfx, 0);
                         }
                         break;
@@ -414,7 +417,7 @@ void render()
         }
         else if (g_game_winner == 1) {
             g_textpos_x = g_game_state.player->get_position().x - 2.0f;
-            Utility::draw_text(&g_shader_program, g_font_texture_id, "YOU WIN", 0.5f, -0.05f,
+            Utility::draw_text(&g_shader_program, g_font_texture_id, "YOU WON", 0.5f, -0.05f,
                 glm::vec3(g_textpos_x, g_textpos_y, 0.0f));
         }
     }
