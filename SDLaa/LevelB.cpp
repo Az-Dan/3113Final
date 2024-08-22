@@ -12,7 +12,7 @@
 #include "Utility.hpp"
 
 #define LEVEL_WIDTH 15
-#define LEVEL_HEIGHT 24
+#define LEVEL_HEIGHT 30
 std::string m_textyy;
 GLuint m_font_texture_id2;
 
@@ -25,31 +25,36 @@ constexpr char m_FONT_FILEPATH[] = "assets/font1.png";
 unsigned int LEVELB_DATA[] =
 {
     3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3,
-    3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 3,
+    3, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 3,
+    3, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 3,
+    3, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3,
+    3, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 3,
     3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3,
     3, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 3,
-    3, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 3,
-    3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 3,
-    3, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 3,
-    3, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3,
-    3, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 3,
+    3, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 3,
+    3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3,
+    3, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 3,
+    3, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 3,
+    3, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 3,
     3, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 3,
+    3, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 3,
+    3, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 3,
     3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3,
-    3, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 3,
-    3, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3,
+    3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 3,
     3, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3,
+    3, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 3,
     3, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 3,
-    3, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3,
-    3, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3,
-    3, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 3,
-    3, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0, 0, 2, 3,
-    3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 2, 3
-};
+    3, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 3,
+    3, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 3,
+    3, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3,
+    3, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 3,
+    3, 1, 1, 1, 1, 1, 1, 1, 0, 2, 2, 1, 0, 2, 3,
+    3, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 1, 1, 1, 3,
+    3, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 3,
+    3, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 3,
+    3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3,
+    3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 3
+}; // 30!
 
 LevelB::~LevelB()
 {
@@ -117,10 +122,9 @@ void LevelB::initialise()
     /**
      
     Enemies' stuff */
-    GLuint enemy_texture_id = Utility::load_texture(ENEMY_FILEPATH);
 
     m_game_state.enemies = new Entity[ENEMY_COUNT];
-
+    GLuint enemy_texture_id = Utility::load_texture(ENEMY_FILEPATH);
     for (int i = 0; i < ENEMY_COUNT; i++)
     {
     m_game_state.enemies[i] =  Entity(enemy_texture_id, 1.0f, 1.0f, 1.0f, ENEMY, GUARD, IDLE);
@@ -129,12 +133,21 @@ void LevelB::initialise()
 
     m_game_state.enemies[0].set_jumping_power(0.1f);
      m_game_state.enemies[0].set_ai_type(JUMPER);
-     m_game_state.enemies[0].set_ai_state(JUMPING);
-     m_game_state.enemies[0].set_position(glm::vec3(4.0f, -5.0f, 0.0f));
+   //  m_game_state.enemies[0].set_ai_state(JUMPING);
+     m_game_state.enemies[0].set_position(glm::vec3(2.0f, -11.0f, 0.0f));
      m_game_state.enemies[0].set_width(0.5f);
      m_game_state.enemies[0].set_height(0.5f);
-     m_game_state.enemies[0].set_movement(glm::vec3(0.0f));
+  //   m_game_state.enemies[0].set_movement(glm::vec3(0.0f));
      m_game_state.enemies[0].set_acceleration(glm::vec3(0.0f, -4.905f, 0.0f));
+    
+    m_game_state.enemies[1].set_jumping_power(0.1f);
+     m_game_state.enemies[1].set_ai_type(JUMPER);
+  //   m_game_state.enemies[1].set_ai_state(JUMPING);
+     m_game_state.enemies[1].set_position(glm::vec3(8.0f, -29.0f, 0.0f));
+     m_game_state.enemies[1].set_width(0.5f);
+     m_game_state.enemies[1].set_height(0.5f);
+   //  m_game_state.enemies[1].set_movement(glm::vec3(0.0f));
+     m_game_state.enemies[1].set_acceleration(glm::vec3(0.0f, -4.905f, 0.0f));
     
     m_font_texture_id2 = Utility::load_texture(m_FONT_FILEPATH);
 
@@ -190,8 +203,14 @@ void LevelB::update(float delta_time)
     } else {
         m_game_state.player->set_tid(Utility::load_texture(SPRITESHEET_FILEPATH));
     }
-    if (m_game_state.player->get_position().y < -30.0f) m_game_state.next_scene_id = 4;
-
+    if (m_game_state.player->get_position().y < -33.0f) {
+        m_game_state.next_scene_id = 4;
+    };
+    
+    for (int i = 0; i < ENEMY_COUNT; i++) {
+        //    void update(float delta_time, Entity *player, Entity *collidable_entities, int collidable_entity_count, Map *map);
+        m_game_state.enemies[i].update(0.0166666f, m_game_state.player, m_game_state.player, 1, m_game_state.map);
+    }
 
     if (!m_game_state.player->get_activity() && m_timer > 0.0f) { // player is dead
         Mix_PlayChannel(-1,  get_state().die_sfx, 0);
@@ -203,6 +222,9 @@ void LevelB::render(ShaderProgram *program)
 {
     m_game_state.map->render(program);
     m_game_state.player->render(program);
+    for (int i = 0; i < ENEMY_COUNT; i++) {
+         m_game_state.enemies[i].render(program);
+     }
     m_textyy = "TIME LEFT: " + std::to_string(static_cast<int>(m_timer));
     if (m_game_state.player->get_lives() > 0.0f) {
         Utility::draw_text(program, m_font_texture_id2, m_textyy, 0.4f, 0.000001f, glm::vec3((m_game_state.player->get_position().x - 2.0f), (m_game_state.player->get_position().y - 2.0f), 0.0f));

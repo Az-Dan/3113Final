@@ -1,9 +1,7 @@
 #include "Scene.hpp"
 
 class Tutorial : public Scene {
-public:
-    int ENEMY_COUNT = 0;
-    
+public:    
     ~Tutorial();
     
     void initialise() override;

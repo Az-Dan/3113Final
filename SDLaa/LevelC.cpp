@@ -11,8 +11,8 @@
 #include "LevelC.hpp"
 #include "Utility.hpp"
 
-#define LEVEL_WIDTH 15
-#define LEVEL_HEIGHT 8
+#define LEVEL_WIDTH 21
+#define LEVEL_HEIGHT 12
 std::string m_textyyy;
 //glm::mat4 m_text_matrix;
 //glm::vec3 m_text_position;
@@ -28,19 +28,22 @@ constexpr char m_FONT_FILEPATH[] = "assets/font1.png";
 
 unsigned int LEVELC_DATA[] =
 {
-    3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 3,
-    3, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0, 0, 2, 3,
-    3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 2, 3
+    3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3,
+    3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 3,
+    3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3,
+    3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3,
+    3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3,
+    3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3,
+    3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3,
+    3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3,
+    3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3,
+    3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3,
+    3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3,
+    3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 3
 };
 
 LevelC::~LevelC()
 {
-    delete [] m_game_state.enemies;
     delete    m_game_state.player;
     delete    m_game_state.map;
     Mix_FreeChunk(m_game_state.win_sfx);
@@ -82,11 +85,11 @@ void LevelC::player_init() // needed
          1.0f,                       // height
          PLAYER,
          true,
-         999.0
+         m_timer
        );
 
        
-   m_game_state.player->set_position(glm::vec3(5.0f, 0.0f, 0.0f));
+   m_game_state.player->set_position(glm::vec3(1.0f, -10.0f, 0.0f));
 
    // Jumping
    m_game_state.player->set_jumping_power(3.0f);
@@ -96,7 +99,7 @@ void LevelC::initialise()
 {
     m_game_state.next_scene_id = -1;
     
-    GLuint map_texture_id = Utility::load_texture("assets/tile195.png");
+    GLuint map_texture_id = Utility::load_texture("assets/tile161b.png");
     m_game_state.map = new Map(LEVEL_WIDTH, LEVEL_HEIGHT, LEVELC_DATA, map_texture_id, 1.0f, 1, 1);
     
     // Code from main.cpp's initialise()
@@ -106,24 +109,6 @@ void LevelC::initialise()
     /**
      
     Enemies' stuff */
-    GLuint enemy_texture_id = Utility::load_texture(ENEMY_FILEPATH);
-
-    m_game_state.enemies = new Entity[ENEMY_COUNT];
-
-    for (int i = 0; i < ENEMY_COUNT; i++)
-    {
-    m_game_state.enemies[i] =  Entity(enemy_texture_id, 1.0f, 1.0f, 1.0f, ENEMY, GUARD, IDLE);
-    }
-
-
-    m_game_state.enemies[0].set_jumping_power(0.1f);
-     m_game_state.enemies[0].set_ai_type(JUMPER);
-     m_game_state.enemies[0].set_ai_state(JUMPING);
-     m_game_state.enemies[0].set_position(glm::vec3(2.0f, 1.0f, 0.0f));
-     m_game_state.enemies[0].set_width(0.5f);
-     m_game_state.enemies[0].set_height(0.5f);
-     m_game_state.enemies[0].set_movement(glm::vec3(0.0f));
-     m_game_state.enemies[0].set_acceleration(glm::vec3(0.0f, -4.905f, 0.0f));
     
     m_font_texture_id3 = Utility::load_texture(m_FONT_FILEPATH);
 
@@ -133,7 +118,7 @@ void LevelC::initialise()
      */
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
     
-    m_game_state.bgm = Mix_LoadMUS("assets/lvl1.mp3");
+    m_game_state.bgm = Mix_LoadMUS("assets/lvl3.mp3");
     Mix_PlayMusic(m_game_state.bgm, -1);
     Mix_VolumeMusic(MIX_MAX_VOLUME / 16.0f);
     
@@ -146,21 +131,49 @@ void LevelC::initialise()
 
 void LevelC::update(float delta_time)
 {
-    m_game_state.player->update(delta_time, m_game_state.player, m_game_state.enemies, ENEMY_COUNT, m_game_state.map);
+    if (m_timer > 0.0f) {
+        if (m_timer < 300.0f) {
+            if (winner) {
+                m_game_state.player->deactivate();
+            }
+            m_timer -= delta_time; // Decrease the timer by the elapsed time
+            m_game_state.player->m_lives -= delta_time;
+        }
+        if (m_timer < 0.0f) {
+            m_timer = 0.0f; // Ensure timer doesn't go below zero
+            // Handle timeout event, if necessary
+            m_game_state.player->set_lives(0.0f);
+            m_game_state.player->deactivate();
+            m_game_state.player->set_movement(glm::vec3(0.0f));
+            m_game_state.player->set_acceleration(glm::vec3(0.0f, 0.0f, 0.0f));
+            
+        }
+        if (m_timer != m_game_state.player->get_lives()) {
+            m_timer = m_game_state.player->get_lives();
+        }
+
+        std::cout << "Timer after update: " << m_timer << std::endl;
+        std::cout << "Lives (also timer) after update: " << m_game_state.player->get_lives() << std::endl;
+
+
+    }
+    
+    m_game_state.player->update(delta_time, m_game_state.player, m_game_state.enemies, 0, m_game_state.map);
     if (!m_game_state.player->get_gravity()) {
         m_game_state.player->set_tid(Utility::load_texture(ALT_FILEPATH));
     } else {
         m_game_state.player->set_tid(Utility::load_texture(SPRITESHEET_FILEPATH));
     }
-    if (m_game_state.player->get_position().y < -10.0f) {
+    if (m_game_state.player->get_position().y < -13.0f) {
         winner = true;
+        m_game_state.player->deactivate();
     }
     
-    if (winner) {
-        Mix_PlayChannel(-1,  get_state().win_sfx, 0);
-    }
+//    if (winner) {
+//        m_game_state.bgm = Mix_LoadMUS("assets/ska.mp3");
+//    }
 
-    if (!m_game_state.player->get_activity()) { // player is dead
+    if (!m_game_state.player->get_activity() && !winner && m_timer > 0.0f) { // player is dead
         Mix_PlayChannel(-1,  get_state().die_sfx, 0);
         player_init();
     }
@@ -170,17 +183,18 @@ void LevelC::render(ShaderProgram *program)
 {
     m_game_state.map->render(program);
     m_game_state.player->render(program);
-    m_textyyy = "TIME LEFT: ";
-    if (m_game_state.player->get_lives() > 0.0f) {
-        Utility::draw_text(program, m_font_texture_id3, m_textyyy, 0.4f, 0.000001f, glm::vec3((m_game_state.player->get_position().x - 2.0f), -6.0f, 0.0f));
+    m_textyyy = "TIME LEFT: " + std::to_string(static_cast<int>(m_timer));
+    if (winner) {
+        Utility::draw_text(program, m_font_texture_id3, "W (Custody Unlocked!)", 0.5f, -0.05f,
+            glm::vec3((m_game_state.player->get_position().x - 4.3f), (m_game_state.player->get_position().y), 0.0f));
+        std::cout << "WINNER"<< std::endl;
     }
-    else if (winner) {
-        Utility::draw_text(program, m_font_texture_id3, "W", 0.5f, -0.05f,
-            glm::vec3((m_game_state.player->get_position().x), -3.0f, 0.0f));
+    else if (m_game_state.player->get_lives() > 0.0f && !winner) {
+        Utility::draw_text(program, m_font_texture_id3, m_textyyy, 0.4f, 0.000001f, glm::vec3((m_game_state.player->get_position().x - 2.0f), (m_game_state.player->get_position().y - 2.0f), 0.0f));
     }
     else {
         Utility::draw_text(program, m_font_texture_id3, "L", 0.5f, -0.05f,
-            glm::vec3((m_game_state.player->get_position().x), -3.0f, 0.0f));
+        glm::vec3((m_game_state.player->get_position().x), (m_game_state.player->get_position().y), 0.0f));
     }
     
 }

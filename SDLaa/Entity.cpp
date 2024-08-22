@@ -138,9 +138,13 @@ void Entity::ai_jumper(Entity* player) // SOMEHOW THIS BECAME ANOTHER FLOATING G
             if (glm::distance(m_position, player->get_position()) < 3.0f) m_ai_state = JUMPING;
             break;
         case JUMPING:
-           if (m_position.y <= 2.0f) {
+           if (m_position.y <= 3.5f) {
+                set_acceleration(glm::vec3(0.0f, -4.905f, 0.0f));
                 jump();
             }
+//            if (m_map_collided_top == true) {
+//                m_is_jumping = false;
+//            }
             break;
         default:
             break;

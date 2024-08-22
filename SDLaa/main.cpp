@@ -76,7 +76,7 @@ LevelC *g_levelC;
 Final *g_final;
 
 Effects *g_effects;
-Scene   *g_levels[6];
+Scene   *g_levels[5];
 
 SDL_Window* g_display_window;
 Mix_Chunk *ahh;
@@ -154,8 +154,9 @@ void initialise()
     g_levels[1] = g_tutorial;
     g_levels[2] = g_levelA;
     g_levels[3] = g_levelB;
+    /// ## SCREW IT. 4 LEVELS TOPS. ##
     g_levels[4] = g_levelC;
-    g_levels[5] = g_final;
+  //  g_levels[5] = g_final;
     
     // Start at level A
     switch_to_scene(g_levels[0]);

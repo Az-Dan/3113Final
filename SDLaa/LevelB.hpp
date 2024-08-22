@@ -2,8 +2,8 @@
 
 class LevelB : public Scene {
 public:
-    int ENEMY_COUNT = 1;
-    float m_timer = 65.0;
+    int ENEMY_COUNT = 2;
+    float m_timer = 60.0;
     //float m_timer;
     
     ~LevelB();

@@ -98,21 +98,8 @@ void Tutorial::initialise()
     
     /**
     Enemies' stuff */
-    GLuint enemy_texture_id = Utility::load_texture(ENEMY_FILEPATH);
     m_font_texture_idt = Utility::load_texture(m_FONT_FILEPATH);
 
-
-    m_game_state.enemies = new Entity[ENEMY_COUNT];
-
-    for (int i = 0; i < ENEMY_COUNT; i++)
-    {
-    m_game_state.enemies[i] =  Entity(enemy_texture_id, 1.0f, 1.0f, 1.0f, ENEMY, GUARD, IDLE);
-    }
-
-
-    m_game_state.enemies[0].set_position(glm::vec3(8.0f, 0.0f, 0.0f));
-    m_game_state.enemies[0].set_movement(glm::vec3(0.0f));
-    m_game_state.enemies[0].set_acceleration(glm::vec3(0.0f, -9.81f, 0.0f));
     
     
     /**
@@ -124,12 +111,12 @@ void Tutorial::initialise()
     Mix_PlayMusic(m_game_state.bgm, -1);
     Mix_VolumeMusic(MIX_MAX_VOLUME / 16.0f);
     
-    m_game_state.jump_sfx = Mix_LoadWAV("assets/whoosh.mp3");
+    m_game_state.jump_sfx = Mix_LoadWAV("assets/horridjump.mp3");
 }
 
 void Tutorial::update(float delta_time)
 {
-    m_game_state.player->update(delta_time, m_game_state.player, m_game_state.enemies, ENEMY_COUNT, m_game_state.map);
+    m_game_state.player->update(delta_time, m_game_state.player, m_game_state.enemies, 0, m_game_state.map);
     if (!m_game_state.player->get_gravity()) {
         m_game_state.player->set_tid(Utility::load_texture(ALT_FILEPATH));
     } else {

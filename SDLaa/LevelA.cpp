@@ -13,7 +13,7 @@
 //#include "Effects.hpp"
 
 #define LEVEL_WIDTH 15
-#define LEVEL_HEIGHT 8
+#define LEVEL_HEIGHT 12
 std::string m_texty;
 //glm::mat4 m_text_matrix;
 //glm::vec3 m_text_position;
@@ -30,13 +30,17 @@ constexpr char m_FONT_FILEPATH[] = "assets/font1.png";
 unsigned int LEVELA_DATA[] =
 {
     3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3,
-    3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-    3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 3,
-    3, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 3,
-    3, 1, 1, 1, 1, 1, 1, 1, 1, 2, 0, 0, 0, 1, 3,
-    3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 1, 1, 2, 3
+    3, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 3,
+    3, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 3,
+    3, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 3,
+    3, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 3,
+    3, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 3,
+    3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 3,
+    3, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3,
+    3, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 3,
+    3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3,
+    3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+    3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 3
 };
 
 LevelA::~LevelA()
@@ -116,14 +120,30 @@ void LevelA::initialise()
 
     m_game_state.enemies[0].set_jumping_power(0.1f);
     m_game_state.enemies[0].set_ai_type(JUMPER);
-    m_game_state.enemies[0].set_ai_state(JUMPING);
-    m_game_state.enemies[0].set_position(glm::vec3(2.0f, -1.0f, 0.0f));
+   // m_game_state.enemies[0].set_ai_state(JUMPING);
+    m_game_state.enemies[0].set_position(glm::vec3(11.0f, -4.0f, 0.0f));
     m_game_state.enemies[0].set_width(0.5f);
     m_game_state.enemies[0].set_height(0.5f);
-    m_game_state.enemies[0].set_movement(glm::vec3(0.0f));
+ //   m_game_state.enemies[0].set_movement(glm::vec3(0.0f));
     m_game_state.enemies[0].set_acceleration(glm::vec3(0.0f, -4.905f, 0.0f));
     
-
+    m_game_state.enemies[1].set_jumping_power(0.1f);
+    m_game_state.enemies[1].set_ai_type(JUMPER);
+  //  m_game_state.enemies[1].set_ai_state(JUMPING);
+    m_game_state.enemies[1].set_position(glm::vec3(1.0f, -11.0f, 0.0f));
+    m_game_state.enemies[1].set_width(0.5f);
+    m_game_state.enemies[1].set_height(0.5f);
+  //  m_game_state.enemies[1].set_movement(glm::vec3(0.0f));
+    m_game_state.enemies[1].set_acceleration(glm::vec3(0.0f, -4.905f, 0.0f));
+    
+    m_game_state.enemies[2].set_jumping_power(0.1f);
+    m_game_state.enemies[2].set_ai_type(JUMPER);
+ //   m_game_state.enemies[2].set_ai_state(JUMPING);
+    m_game_state.enemies[2].set_position(glm::vec3(10.0f, -6.0f, 0.0f));
+    m_game_state.enemies[2].set_width(0.5f);
+    m_game_state.enemies[2].set_height(0.5f);
+  //  m_game_state.enemies[2].set_movement(glm::vec3(0.0f));
+    m_game_state.enemies[2].set_acceleration(glm::vec3(0.0f, -4.905f, 0.0f));
     
     m_font_texture_id1 = Utility::load_texture(m_FONT_FILEPATH);
 
@@ -184,7 +204,7 @@ void LevelA::update(float delta_time)
     } else {
         m_game_state.player->set_tid(Utility::load_texture(SPRITESHEET_FILEPATH));
     }
-    if (m_game_state.player->get_position().y < -10.0f) m_game_state.next_scene_id = 3;
+    if (m_game_state.player->get_position().y < -12.0f) m_game_state.next_scene_id = 3;
 
 
     for (int i = 0; i < ENEMY_COUNT; i++) {
@@ -212,6 +232,9 @@ void LevelA::render(ShaderProgram *program)
 {
     m_game_state.map->render(program);
     m_game_state.player->render(program);
+    for (int i = 0; i < ENEMY_COUNT; i++) {
+         m_game_state.enemies[i].render(program);
+     }
     m_texty = "TIME LEFT: " + std::to_string(static_cast<int>(m_timer));
     if (winner) {
         Utility::draw_text(program, m_font_texture_id1, "W", 0.5f, -0.05f,

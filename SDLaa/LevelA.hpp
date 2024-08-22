@@ -3,8 +3,8 @@
 
 class LevelA : public Scene {
 public:
-    int ENEMY_COUNT = 1;
-    float m_timer = 64.0;
+    int ENEMY_COUNT = 3;
+    float m_timer = 90.0;
     bool winner = false;
     //Effects *m_effects;
     

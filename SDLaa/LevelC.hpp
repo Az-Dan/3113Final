@@ -2,8 +2,8 @@
 
 class LevelC : public Scene {
 public:
-    int ENEMY_COUNT = 1;
-    bool winner = 0;
+    bool winner = false;
+    float m_timer = 30.0;
     
     ~LevelC();
     
