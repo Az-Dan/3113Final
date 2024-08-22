@@ -32,6 +32,8 @@ private:
     GLuint m_vertex_shader;
     GLuint m_fragment_shader;
     
+    GLuint m_effect_shader;
+    
 public:
 
     void load(const char *vertex_shader_file, const char *fragment_shader_file);

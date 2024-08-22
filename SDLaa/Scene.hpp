@@ -12,9 +12,9 @@
 #include "glm/mat4x4.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "ShaderProgram.h"
-#include "Util.h"
-#include "Entity.h"
-#include "Map.h"
+#include "Utility.hpp"
+#include "Entity.hpp"
+#include "Map.hpp"
 
 /**
     Notice that the game's state is now part of the Scene class, not the main file.
@@ -29,6 +29,8 @@ struct GameState
     // ————— AUDIO ————— //
     Mix_Music *bgm;
     Mix_Chunk *jump_sfx;
+    Mix_Chunk *die_sfx;
+    Mix_Chunk *win_sfx;
     
     // ————— POINTERS TO OTHER SCENES ————— //
     int next_scene_id;

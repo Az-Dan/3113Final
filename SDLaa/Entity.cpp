@@ -1,7 +1,7 @@
 /**
-* Author: Dani KIm
-* Assignment: Rise of the AI
-* Date due: 2024-07-27, 11:59pm (submitted 2024-07-31 w/ extension)
+* Author: Dani Kim
+* Assignment: AAAAAA (Gravity Platformer)
+* Date due: 2024-08-15, 1:00pm (extended to submit by 2024-08-18)
 * I pledge that I have completed this assignment without
 * collaborating with anyone else, in conformance with the
 * NYU School of Engineering Policies and Procedures on
@@ -180,13 +180,13 @@ Entity::Entity()
 // Parameterized constructor
 Entity::Entity(GLuint texture_id, float speed, glm::vec3 acceleration, float jump_power, int walking[4][3], float animation_time,
     int animation_frames, int animation_index, int animation_cols,
-    int animation_rows, float width, float height, EntityType EntityType)
+    int animation_rows, float width, float height, EntityType EntityType, bool gravity, float lives)
     : m_position(0.0f), m_movement(0.0f), m_scale(1.0f, 1.0f, 0.0f), m_model_matrix(1.0f),
     m_speed(speed),m_acceleration(acceleration), m_jumping_power(jump_power), m_animation_cols(animation_cols),
     m_animation_frames(animation_frames), m_animation_index(animation_index),
     m_animation_rows(animation_rows), m_animation_indices(nullptr),
     m_animation_time(animation_time), m_texture_id(texture_id), m_velocity(0.0f),
-    m_width(width), m_height(height), m_entity_type(EntityType)
+    m_width(width), m_height(height), m_entity_type(EntityType), m_gravity(gravity), m_lives(lives)
 {
     face_right();
     set_walking(walking);
@@ -257,6 +257,9 @@ void Entity::draw_sprite_from_texture_atlas(ShaderProgram* program, GLuint textu
 
 bool const Entity::check_collision(Entity* other) const
 {
+    if (!other->get_activity()) {
+        return false;
+    }
     float x_distance = fabs(m_position.x - other->m_position.x) - ((m_width + other->m_width) / 2.0f);
     float y_distance = fabs(m_position.y - other->m_position.y) - ((m_height + other->m_height) / 2.0f);
 
@@ -290,12 +293,12 @@ void const Entity::check_collision_y(Entity *collidable_entities, int collidable
                     m_collided_bottom  = true;
                     
                     // enemy dies lmao
-                    if (collidable_entity->get_ai_type() == COWARD || collidable_entity->get_ai_type() == FLOATER || collidable_entity->get_ai_type() == JUMPER) { // THIS WORKS AND DETECTING ENEMIES DOESN'T WOW FML
-                        //if (m_collided_bottom) {
-                            collidable_entity->m_is_active = false;
-                            --m_enemy_amt;
-                        //}
-                    }
+//                    if (collidable_entity->get_ai_type() == COWARD || collidable_entity->get_ai_type() == FLOATER || collidable_entity->get_ai_type() == JUMPER) { // THIS WORKS AND DETECTING ENEMIES DOESN'T WOW FML
+//                        //if (m_collided_bottom) {
+//                            collidable_entity->m_is_active = false;
+//                            --m_enemy_amt;
+//                        //}
+//                    }
                 }
             }
         }
@@ -428,10 +431,10 @@ void Entity::update(float delta_time, Entity *player, Entity *collidable_entitie
     m_map_collided_right  = false;
 
     
-    //if (m_entity_type == ENEMY) ai_activate(player);
+    if (m_entity_type == ENEMY) ai_activate(player);
     if (m_ai_type == JUMPER) ai_activate(player);
     if (m_ai_type == FLOATER) ai_activate(player);
-    if (m_ai_type == COWARD) ai_activate(player);
+   if (m_ai_type == COWARD) ai_activate(player);
     
     // AGAIN WHAT THE HELL
 
@@ -473,32 +476,40 @@ void Entity::update(float delta_time, Entity *player, Entity *collidable_entitie
     
     // player dies lmao
     if (m_entity_type == PLAYER) {
-        if (m_collided_top || m_collided_left || m_collided_right) {
+        if (m_collided_top || m_collided_left || m_collided_right || m_collided_bottom) {
             deactivate();
+        } else if (m_gravity == false) { // if not dead, able to swap gravity
+            set_acceleration(glm::vec3(0.0f, 8.0f, 0.0f));
+        } else if (m_gravity == true) {
+            set_acceleration(glm::vec3(0.0f, -8.0f, 0.0f));
         }
     }
-//    if (m_entity_type == ENEMY) {
-//        m_is_active = true;
-//    }
+    if (m_entity_type == ENEMY) {
+        m_is_active = true;
+    }
     
     
-    if (m_is_jumping)
+    if (m_is_jumping) // SCREW IT LET'S CHANGE THE FUNDAMENTAL RULES OF JUMPING
     {
         m_is_jumping = false;
         m_velocity.y += m_jumping_power;
     }
     
+
     
-//    if (m_entity_type == ENEMY) { // necessary so that when coward falls over, he dies
-//        if (m_position.y <= -3.75f) {
-//            --m_enemy_amt;
-//            m_is_active = false;
-//        }
-//        //break;
-//    }
+    if (m_entity_type == ENEMY) { // necessary so that when coward falls over, he dies
+        if (m_position.y <= -3.75f) {
+            --m_enemy_amt;
+            m_is_active = false;
+        }
+        //break;
+    }
     
     m_model_matrix = glm::mat4(1.0f);
     m_model_matrix = glm::translate(m_model_matrix, m_position);
+//    if (m_entity_type == PLAYER && !m_gravity) {
+//        
+//    }
 }
 
 
@@ -510,12 +521,18 @@ void Entity::render(ShaderProgram* program)
 
     if (m_animation_indices != NULL)
     {
+//        if (m_entity_type == PLAYER && m_gravity = false) {
+//            
+//        }
         draw_sprite_from_texture_atlas(program, m_texture_id, m_animation_indices[m_animation_index]);
         return;
     }
+    
+    
 
     float vertices[] = { -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5 };
     float tex_coords[] = { 0.0,  1.0, 1.0,  1.0, 1.0, 0.0,  0.0,  1.0, 1.0, 0.0,  0.0, 0.0 };
+
 
     glBindTexture(GL_TEXTURE_2D, m_texture_id);
 

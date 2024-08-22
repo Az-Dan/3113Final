@@ -10,6 +10,13 @@
 		AA39660B2C1A23960004EE4A /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA54F58C2C0F9CF300A4F22B /* SDL2.framework */; };
 		AA3966192C20A62D0004EE4A /* helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA3966182C20A62D0004EE4A /* helper.cpp */; };
 		AA42BAF72C6D1D6C00EC3A99 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA42BAF52C6D1D6C00EC3A99 /* Scene.cpp */; };
+		AA42BAFA2C6D2DF700EC3A99 /* Effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA42BAF82C6D2DF700EC3A99 /* Effects.cpp */; };
+		AA42BAFD2C6D2F0E00EC3A99 /* LevelA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA42BAFB2C6D2F0E00EC3A99 /* LevelA.cpp */; };
+		AA42BB002C6D2F8600EC3A99 /* LevelB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA42BAFE2C6D2F8600EC3A99 /* LevelB.cpp */; };
+		AA42BB032C6D34E900EC3A99 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA42BB012C6D34E900EC3A99 /* Menu.cpp */; };
+		AA42BB062C6D361C00EC3A99 /* Tutorial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA42BB042C6D361C00EC3A99 /* Tutorial.cpp */; };
+		AA42BB0C2C6E3ADE00EC3A99 /* LevelC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA42BB0A2C6E3ADE00EC3A99 /* LevelC.cpp */; };
+		AA42BB0F2C739BD300EC3A99 /* Final.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA42BB0D2C739BD300EC3A99 /* Final.cpp */; };
 		AA54F57B2C0F9BDC00A4F22B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA54F57A2C0F9BDC00A4F22B /* main.cpp */; };
 		AA54F5862C0F9C2A00A4F22B /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA54F5822C0F9C2700A4F22B /* ShaderProgram.cpp */; };
 		AA54F5892C0F9CD900A4F22B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA54F5882C0F9CD900A4F22B /* OpenGL.framework */; };
@@ -43,6 +50,20 @@
 		AA3966212C2F8ABB0004EE4A /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		AA42BAF52C6D1D6C00EC3A99 /* Scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		AA42BAF62C6D1D6C00EC3A99 /* Scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
+		AA42BAF82C6D2DF700EC3A99 /* Effects.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Effects.cpp; sourceTree = "<group>"; };
+		AA42BAF92C6D2DF700EC3A99 /* Effects.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Effects.hpp; sourceTree = "<group>"; };
+		AA42BAFB2C6D2F0E00EC3A99 /* LevelA.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LevelA.cpp; sourceTree = "<group>"; };
+		AA42BAFC2C6D2F0E00EC3A99 /* LevelA.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LevelA.hpp; sourceTree = "<group>"; };
+		AA42BAFE2C6D2F8600EC3A99 /* LevelB.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LevelB.cpp; sourceTree = "<group>"; };
+		AA42BAFF2C6D2F8600EC3A99 /* LevelB.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LevelB.hpp; sourceTree = "<group>"; };
+		AA42BB012C6D34E900EC3A99 /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		AA42BB022C6D34E900EC3A99 /* Menu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Menu.hpp; sourceTree = "<group>"; };
+		AA42BB042C6D361C00EC3A99 /* Tutorial.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial.cpp; sourceTree = "<group>"; };
+		AA42BB052C6D361C00EC3A99 /* Tutorial.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Tutorial.hpp; sourceTree = "<group>"; };
+		AA42BB0A2C6E3ADE00EC3A99 /* LevelC.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LevelC.cpp; sourceTree = "<group>"; };
+		AA42BB0B2C6E3ADE00EC3A99 /* LevelC.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LevelC.hpp; sourceTree = "<group>"; };
+		AA42BB0D2C739BD300EC3A99 /* Final.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Final.cpp; sourceTree = "<group>"; };
+		AA42BB0E2C739BD300EC3A99 /* Final.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Final.hpp; sourceTree = "<group>"; };
 		AA54F5772C0F9BDC00A4F22B /* SDLaa */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDLaa; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA54F57A2C0F9BDC00A4F22B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AA54F5812C0F9C2700A4F22B /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderProgram.h; sourceTree = "<group>"; };
@@ -109,6 +130,10 @@
 				AA54F5832C0F9C2700A4F22B /* stb_image.h */,
 				AA3966212C2F8ABB0004EE4A /* assets */,
 				AA54F57A2C0F9BDC00A4F22B /* main.cpp */,
+				AA42BB0D2C739BD300EC3A99 /* Final.cpp */,
+				AA42BB0E2C739BD300EC3A99 /* Final.hpp */,
+				AA42BB0A2C6E3ADE00EC3A99 /* LevelC.cpp */,
+				AA42BB0B2C6E3ADE00EC3A99 /* LevelC.hpp */,
 				AA65F8AC2C3DA635007FEA1F /* sprite.cpp */,
 				AA65F8AD2C3DA635007FEA1F /* sprite.hpp */,
 				AA65F8AF2C3DA677007FEA1F /* Entity.cpp */,
@@ -119,6 +144,16 @@
 				AAD2286F2C56D172005640D0 /* Map.hpp */,
 				AA42BAF52C6D1D6C00EC3A99 /* Scene.cpp */,
 				AA42BAF62C6D1D6C00EC3A99 /* Scene.hpp */,
+				AA42BAF82C6D2DF700EC3A99 /* Effects.cpp */,
+				AA42BAF92C6D2DF700EC3A99 /* Effects.hpp */,
+				AA42BAFB2C6D2F0E00EC3A99 /* LevelA.cpp */,
+				AA42BAFC2C6D2F0E00EC3A99 /* LevelA.hpp */,
+				AA42BAFE2C6D2F8600EC3A99 /* LevelB.cpp */,
+				AA42BAFF2C6D2F8600EC3A99 /* LevelB.hpp */,
+				AA42BB012C6D34E900EC3A99 /* Menu.cpp */,
+				AA42BB022C6D34E900EC3A99 /* Menu.hpp */,
+				AA42BB042C6D361C00EC3A99 /* Tutorial.cpp */,
+				AA42BB052C6D361C00EC3A99 /* Tutorial.hpp */,
 			);
 			path = SDLaa;
 			sourceTree = "<group>";
@@ -195,11 +230,18 @@
 			files = (
 				AA42BAF72C6D1D6C00EC3A99 /* Scene.cpp in Sources */,
 				AAD2286D2C560805005640D0 /* Utility.cpp in Sources */,
+				AA42BB0C2C6E3ADE00EC3A99 /* LevelC.cpp in Sources */,
 				AA54F57B2C0F9BDC00A4F22B /* main.cpp in Sources */,
 				AA54F5862C0F9C2A00A4F22B /* ShaderProgram.cpp in Sources */,
+				AA42BAFD2C6D2F0E00EC3A99 /* LevelA.cpp in Sources */,
 				AA65F8AE2C3DA635007FEA1F /* sprite.cpp in Sources */,
+				AA42BB032C6D34E900EC3A99 /* Menu.cpp in Sources */,
 				AA65F8B12C3DA677007FEA1F /* Entity.cpp in Sources */,
+				AA42BB002C6D2F8600EC3A99 /* LevelB.cpp in Sources */,
+				AA42BB0F2C739BD300EC3A99 /* Final.cpp in Sources */,
+				AA42BB062C6D361C00EC3A99 /* Tutorial.cpp in Sources */,
 				AAD228702C56D172005640D0 /* Map.cpp in Sources */,
+				AA42BAFA2C6D2DF700EC3A99 /* Effects.cpp in Sources */,
 				AA3966192C20A62D0004EE4A /* helper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

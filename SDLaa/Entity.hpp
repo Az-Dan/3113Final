@@ -36,6 +36,7 @@ private:
               m_jumping_power;
     
     bool m_is_jumping;
+    bool m_gravity = true;
 
     // ————— TEXTURES ————— //
     GLuint    m_texture_id;
@@ -63,6 +64,7 @@ private:
     bool m_map_collided_right  = false;
 
 public:
+    float m_lives = 20.0f;
     // ————— STATIC VARIABLES ————— //
     static constexpr int SECONDS_PER_FRAME = 4;
 
@@ -70,7 +72,7 @@ public:
     Entity();
     Entity(GLuint texture_id, float speed, glm::vec3 acceleration, float jump_power, int walking[4][3], float animation_time,
         int animation_frames, int animation_index, int animation_cols,
-           int animation_rows, float width, float height, EntityType EntityType);
+           int animation_rows, float width, float height, EntityType EntityType, bool gravity, float lives);
     Entity(GLuint texture_id, float speed, float width, float height, EntityType EntityType); // Simpler constructor
     Entity(GLuint texture_id, float speed, float width, float height, EntityType EntityType, AIType AIType, AIState AIState); // AI constructor
     ~Entity();
@@ -121,6 +123,7 @@ public:
     glm::vec3 const get_scale()        const { return m_scale; }
     GLuint    const get_texture_id()   const { return m_texture_id; }
     float     const get_speed()        const { return m_speed; }
+    bool      const get_gravity()      const { return m_gravity; }
     bool      const get_collided_top() const { return m_collided_top; }
     bool      const get_collided_bottom() const { return m_collided_bottom; }
     bool      const get_collided_right() const { return m_collided_right; }
@@ -131,6 +134,7 @@ public:
     bool      const get_map_collided_left() const { return m_map_collided_left; }
     int       const get_enemy_amt() const { return m_enemy_amt; }
     bool      const get_activity() const { return m_is_active; }
+    float       const get_lives() const { return m_lives; }
     
     void activate()   { m_is_active = true;  };
     void deactivate() { m_is_active = false; };
@@ -154,7 +158,10 @@ public:
     void const set_width(float new_width) {m_width = new_width; }
     void const set_height(float new_height) {m_height = new_height; }
     void const set_enemy_amt(int new_count) {m_enemy_amt = new_count;}
-
+    void const set_gravity(bool new_grav) {m_gravity = new_grav;}
+    void const set_lives (float new_lives) {m_lives = new_lives;} // life counter reworked to be time lmao
+    void const set_tid (GLuint new_tid) {m_texture_id = new_tid;}
+    
     // Setter for m_walking
     void set_walking(int walking[4][3])
     {
